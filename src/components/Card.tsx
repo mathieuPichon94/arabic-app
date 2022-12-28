@@ -1,5 +1,6 @@
 import type React from "react";
 import { useState } from "react";
+import { Button } from "@/components/Button";
 
 export const Card: React.FC<{
   frenchWord: string;
@@ -18,13 +19,13 @@ export const Card: React.FC<{
             <p className="text-gray-700 text-base mb-4">{props.frenchWord}</p>
           )}
         </div>
-        <button
-          type="button"
-          className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-          onClick={() => setShowWord(!showWord)}
-        >
-          Button
-        </button>
+        <Button
+          text={"show"}
+          onClickButton={() => {
+            console.log("hello");
+          }}
+          intent={"success"}
+        />
       </div>
     </div>
   );

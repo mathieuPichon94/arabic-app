@@ -39,8 +39,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - [ ] video: system design tailwinf
 - [ ] video: SSR pokedex
 - [ ] video: theo -> planet scale in prod
-- [ ] clone projects business card
-- [ ] deploy vercel
+- [x] clone projects business card
+- [x] deploy vercel
 - [X] navbar
 - [ ] SSR: true -> Check network
 - [ ] tailwind dark them
