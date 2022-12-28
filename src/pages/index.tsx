@@ -1,4 +1,5 @@
 import { Card } from "@/components/Card";
+import NavBar from "@/components/NavBar";
 import { trpc } from "@/utils/trpc";
 
 const btn =
@@ -11,24 +12,29 @@ export default function Home() {
     return <div>Loading...</div>;
   }
   return (
-    <div className="h-screen w-screen flex flex-col justify-around items-center relative">
-      <h1 className="text-3xl font-bold underline">Welcome to arabice test</h1>
-      <Card
-        frenchWord={word.data?.arabicWord || "lol"}
-        showAnswer={() => {
-          console.log("حَسَبَ / يَحْسُبُ");
-        }}
-      />
-      <div className="flex flex-row justify-around items-center">
-        <button className={btn} onClick={() => console.log("lol")}>
-          Previous
-        </button>
-        <button className={btn} onClick={() => console.log("lol")}>
-          Show
-        </button>
-        <button className={btn} onClick={() => console.log("lol")}>
-          Next
-        </button>
+    <div>
+      <NavBar />
+      <div className="h-screen w-screen flex flex-col justify-around items-center relative">
+        <h1 className="text-3xl font-bold underline">
+          Welcome to arabice test
+        </h1>
+        <Card
+          frenchWord={word.data?.arabicWord || "lol"}
+          showAnswer={() => {
+            console.log("حَسَبَ / يَحْسُبُ");
+          }}
+        />
+        <div className="flex flex-row justify-around items-center">
+          <button className={btn} onClick={() => console.log("lol")}>
+            Previous
+          </button>
+          <button className={btn} onClick={() => console.log("lol")}>
+            Show
+          </button>
+          <button className={btn} onClick={() => console.log("lol")}>
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

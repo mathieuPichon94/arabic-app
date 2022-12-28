@@ -41,7 +41,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - [ ] video: theo -> planet scale in prod
 - [ ] clone projects business card
 - [ ] deploy vercel
-- [ ] navbar
+- [X] navbar
 - [ ] SSR: true -> Check network
 - [ ] tailwind dark them
 - [ ] tailwind provider
