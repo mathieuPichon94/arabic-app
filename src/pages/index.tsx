@@ -5,7 +5,8 @@ const btn =
   "inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm font-medium rounded-full text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500";
 
 export default function Home() {
-  const hello = trpc.hello.useQuery({ text: "client" });
+  const hello = trpc.hello.useQuery({ text: "glol" });
+  const word = trpc.getWord.useQuery();
   if (!hello.data) {
     return <div>Loading...</div>;
   }
@@ -13,9 +14,9 @@ export default function Home() {
     <div className="h-screen w-screen flex flex-col justify-around items-center relative">
       <h1 className="text-3xl font-bold underline">Welcome to arabice test</h1>
       <Card
-        frenchWord={"lol"}
+        frenchWord={word.data?.arabicWord || "lol"}
         showAnswer={() => {
-          console.log("test");
+          console.log("حَسَبَ / يَحْسُبُ");
         }}
       />
       <div className="flex flex-row justify-around items-center">

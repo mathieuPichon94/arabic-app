@@ -12,6 +12,12 @@ export const appRouter = router({
         greeting: `hello ${input.text}`,
       };
     }),
+  getWord: procedure.query(({}) => {
+    return {
+      arabicWord: `حَسَبَ / يَحْسُبُ`,
+    };
+  }),
 });
+
 // export type definition of API
 export type AppRouter = typeof appRouter;
