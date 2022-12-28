@@ -12,7 +12,7 @@ const Quizz: React.FC<{
   return (
     <div>
       <div className="h-screen w-screen flex flex-col justify-around items-center relative">
-        <h1 className="text-2xl font-bold">Let's start the quizz</h1>
+        <h1 className="text-2xl font-bold">Lets start the quizz</h1>
         <Card wordsToTest={wordsToTest} />
       </div>
     </div>
