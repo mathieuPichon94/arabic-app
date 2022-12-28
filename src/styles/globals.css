@@ -4,5 +4,5 @@
 @tailwind utilities;
 
 body {
-    @apply text-gray-100 bg-gradient-to-r from-indigo-500;
+    @apply text-gray-100 bg-gray-800;
 }
