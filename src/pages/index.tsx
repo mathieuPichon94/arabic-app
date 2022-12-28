@@ -13,7 +13,7 @@ export default function Home() {
   }
   return (
     <div>
-      <NavBar />
+      {/*<NavBar />*/}
       <div className="h-screen w-screen flex flex-col justify-around items-center relative">
         <h1 className="text-3xl font-bold underline">
           Welcome to arabice test
