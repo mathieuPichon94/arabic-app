@@ -1,27 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface IndexWordState {
+export interface currentIndexWordState {
   value: number;
 }
 
-const initialState: IndexWordState = {
+const initialState: currentIndexWordState = {
   value: 0,
 };
 
-export const indexWordSlice = createSlice({
-  name: "indexWord",
+export const currentIndexWordSlice = createSlice({
+  name: "currentIndexWord",
   initialState,
   reducers: {
     increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
       state.value += 1;
     },
     decrement: (state) => {
-      state.value -= 1;
+      if (state.value > 0) {
+        state.value -= 1;
+      }
     },
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload;
@@ -31,6 +29,6 @@ export const indexWordSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { increment, decrement, incrementByAmount } =
-  indexWordSlice.actions;
+  currentIndexWordSlice.actions;
 
-export default indexWordSlice.reducer;
+export default currentIndexWordSlice.reducer;

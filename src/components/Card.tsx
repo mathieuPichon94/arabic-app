@@ -2,17 +2,20 @@ import type React from "react";
 import { useState } from "react";
 import { Button } from "@/components/Button";
 
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "@/utils/slice/indexWordSlice";
+import { useDispatch } from "react-redux";
+import { decrement, increment } from "@/utils/slice/currentIndexWordSlice";
+import { incrementMax } from "@/utils/slice/maxIndexWordSlice";
 
 type CardProps = {
-  wordsToTest: { arab: string; french: string }[];
+  wordToTest: { arab: string; french: string };
+  shouldShowTranslation: boolean;
 };
 
-export const Card: React.FC<CardProps> = ({ wordsToTest }) => {
+export const Card: React.FC<CardProps> = ({
+  wordToTest,
+  shouldShowTranslation,
+}) => {
   const [showWord, setShowWord] = useState(false);
-  const [indexWord, setIndexWord] = useState(0);
-  const wordToTest = wordsToTest[indexWord];
   const dispatch = useDispatch();
 
   return (
@@ -22,7 +25,7 @@ export const Card: React.FC<CardProps> = ({ wordsToTest }) => {
       </h5>
       <div className="flex justify-between pb-10">
         <p className="text-gray-700 text-base">{wordToTest.french}</p>
-        {showWord && (
+        {(shouldShowTranslation || showWord) && (
           <p className="text-gray-700 text-base">{wordToTest.arab}</p>
         )}
       </div>
@@ -30,16 +33,14 @@ export const Card: React.FC<CardProps> = ({ wordsToTest }) => {
         <Button
           text={"Previous"}
           onClickButton={() => {
-            if (indexWord > 0) {
-              setIndexWord(indexWord - 1);
-              setShowWord(true);
-            }
+            dispatch(decrement());
           }}
           intent={"danger"}
         />
         <Button
           text={"Show"}
           onClickButton={() => {
+            dispatch(incrementMax());
             setShowWord(true);
           }}
           intent={"primary"}
@@ -48,12 +49,11 @@ export const Card: React.FC<CardProps> = ({ wordsToTest }) => {
         <Button
           text={"Next"}
           onClickButton={() => {
-            setShowWord(!showWord);
-            setIndexWord(indexWord + 1);
             dispatch(increment());
+            setShowWord(false);
           }}
-          intent={showWord ? "success" : "disabled"}
-          disabled={!showWord}
+          intent={shouldShowTranslation || showWord ? "success" : "disabled"}
+          disabled={!(shouldShowTranslation || showWord)}
         />
       </div>
     </div>

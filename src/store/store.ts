@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import indexWordReducer from "@/utils/slice/indexWordSlice";
+import currentIndexWordReducer from "@/utils/slice/currentIndexWordSlice";
+import maxIndexWordReducer from "@/utils/slice/maxIndexWordSlice";
 
 export const store = configureStore({
   reducer: {
-    indexWord: indexWordReducer,
+    currentIndexWord: currentIndexWordReducer,
+    maxIndexWordReducer: maxIndexWordReducer,
   },
 });
 
