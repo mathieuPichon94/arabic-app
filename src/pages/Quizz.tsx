@@ -1,8 +1,8 @@
 import type { GetServerSideProps } from "next";
 import { Card } from "@/components/Card";
 
-import { promises as fs } from "fs";
-import { useState } from "react";
+import { openArabicVoc } from "@/server/utils";
+import React from "react";
 
 type wordToTest = { arab: string; french: string };
 
@@ -22,6 +22,6 @@ const Quizz: React.FC<{
 export default Quizz;
 
 export const getStaticProps: GetServerSideProps = async () => {
-  const fileContents = await fs.readFile("public/arabicVoc.json", "utf8");
-  return { props: { wordsToTest: JSON.parse(fileContents) } };
+  const arabicVoc = await openArabicVoc();
+  return { props: { wordsToTest: arabicVoc } };
 };

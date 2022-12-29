@@ -13,7 +13,7 @@ type NavBarProps = { asPath: string };
 const navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Quizz", href: "/Quizz", current: false },
-  { name: "WordList", href: "/Team", current: false },
+  { name: "Words List", href: "/WordsList", current: false },
 ];
 
 function classNames(...classes: string[]) {
@@ -21,7 +21,6 @@ function classNames(...classes: string[]) {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ asPath }) => {
-  console.log("here", asPath);
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
