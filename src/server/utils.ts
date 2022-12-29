@@ -1,5 +1,4 @@
 import { promises as fs } from "fs";
-import { array } from "zod";
 
 export const openArabicVoc = async () => {
   const fileContents = await fs.readFile("public/arabicVoc.json", "utf8");
