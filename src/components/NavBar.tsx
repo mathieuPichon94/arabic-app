@@ -141,8 +141,6 @@ const NavBar: React.FC<NavBarProps> = ({ asPath }) => {
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as="a"
-                  href={item.href}
                   className={classNames(
                     item.href === asPath
                       ? "bg-gray-900 text-white"
@@ -151,7 +149,9 @@ const NavBar: React.FC<NavBarProps> = ({ asPath }) => {
                   )}
                   aria-current={item.href === asPath ? "page" : undefined}
                 >
-                  {item.name}
+                  <Link key={item.name} href={item.href}>
+                    {item.name}
+                  </Link>
                 </Disclosure.Button>
               ))}
             </div>
