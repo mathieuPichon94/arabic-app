@@ -1,13 +1,18 @@
 import NavBar from "@/components/NavBar";
+import React from "react";
 
 type LayoutProps = {
   children: JSX.Element;
+  asPath: string;
 };
-export default function Layout({ children }: LayoutProps) {
+
+const Layout: React.FC<LayoutProps> = ({ children, asPath }) => {
   return (
     <>
-      <NavBar />
+      <NavBar asPath={asPath} />
       <main>{children}</main>
     </>
   );
-}
+};
+
+export default Layout;

@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import {
@@ -9,18 +9,19 @@ import {
   GlobeAltIcon,
 } from "@heroicons/react/24/outline";
 
+type NavBarProps = { asPath: string };
 const navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Quizz", href: "/Quizz", current: false },
-  { name: "Team", href: "/Team", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "WordList", href: "/Team", current: false },
 ];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavBar() {
+const NavBar: React.FC<NavBarProps> = ({ asPath }) => {
+  console.log("here", asPath);
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -49,12 +50,12 @@ export default function NavBar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current
+                          asPath === item.href
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
                           "px-3 py-2 rounded-md text-sm font-medium"
                         )}
-                        aria-current={item.current ? "page" : undefined}
+                        aria-current={asPath === item.href ? "page" : undefined}
                       >
                         {item.name}
                       </Link>
@@ -143,12 +144,12 @@ export default function NavBar() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current
+                    item.href === asPath
                       ? "bg-gray-900 text-white"
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",
                     "block px-3 py-2 rounded-md text-base font-medium"
                   )}
-                  aria-current={item.current ? "page" : undefined}
+                  aria-current={item.href === asPath ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
@@ -159,4 +160,6 @@ export default function NavBar() {
       )}
     </Disclosure>
   );
-}
+};
+
+export default NavBar;

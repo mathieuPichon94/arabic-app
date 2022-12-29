@@ -2,9 +2,8 @@ import type React from "react";
 import { useState } from "react";
 import { Button } from "@/components/Button";
 
-type wordToTest = { arab: string; french: string };
 type CardProps = {
-  wordsToTest: wordToTest[];
+  wordsToTest: { arab: string; french: string }[];
 };
 
 export const Card: React.FC<CardProps> = ({ wordsToTest }) => {
