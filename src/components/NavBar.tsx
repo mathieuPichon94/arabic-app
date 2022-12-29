@@ -9,6 +9,8 @@ import {
   GlobeAltIcon,
 } from "@heroicons/react/24/outline";
 
+import { useSession, signIn, signOut } from "next-auth/react";
+
 type NavBarProps = { asPath: string };
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -117,15 +119,15 @@ const NavBar: React.FC<NavBarProps> = ({ asPath }) => {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <Link
-                            href="#"
+                          <a
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
+                            onClick={() => signOut()}
                           >
-                            Sign out
-                          </Link>
+                            Sign Out
+                          </a>
                         )}
                       </Menu.Item>
                     </Menu.Items>
