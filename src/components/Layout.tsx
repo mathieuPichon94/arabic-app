@@ -11,22 +11,10 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children, asPath }) => {
   const { data: session } = useSession();
-  if (session) {
-    return (
-      <>
-        <NavBar asPath={asPath} />
-        <main>{children}</main>
-      </>
-    );
-  }
   return (
     <>
-      Not signed in <br />
-      <Button
-        text={"Sign In"}
-        onClickButton={() => signIn()}
-        intent={"success"}
-      />
+      <NavBar asPath={asPath} />
+      {session && <main>{children}</main>}
     </>
   );
 };

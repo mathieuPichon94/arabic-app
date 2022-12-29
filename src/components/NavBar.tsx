@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { type Session } from "next-auth";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import {
@@ -12,15 +13,79 @@ import {
 import { useSession, signIn, signOut } from "next-auth/react";
 
 type NavBarProps = { asPath: string };
+type UserActionProps = { title: string; onClick: () => void };
+
 const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Quizz", href: "/Quizz", current: false },
-  { name: "Words List", href: "/WordsList", current: false },
+  { name: "Home", href: "/" },
+  { name: "Quizz", href: "/Quizz" },
+  { name: "Words List", href: "/WordsList" },
+];
+
+const userActions = [
+  { name: "Your Profile", onClick: () => console.log("Your Profile") },
+  { name: "Settings", onClick: () => console.log("Settings") },
+  { name: "Sign Out", onClick: () => signOut() },
 ];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
+
+const UserAction: React.FC<UserActionProps> = ({ title, onClick }) => {
+  return (
+    <Menu.Item>
+      {({ active }) => (
+        <a
+          href="#"
+          className={classNames(
+            active ? "bg-gray-100" : "",
+            "block px-4 py-2 text-sm text-gray-700"
+          )}
+          onClick={onClick}
+        >
+          {title}
+        </a>
+      )}
+    </Menu.Item>
+  );
+};
+
+const UserMenu: React.FC<{}> = ({}) => {
+  const { data: session } = useSession();
+  return (
+    <Menu as="div" className="relative ml-3">
+      <div>
+        <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+          <span className="sr-only">Open user menu</span>
+          <UserIcon className="h-6 w-6" aria-hidden="true" />
+        </Menu.Button>
+      </div>
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          {session &&
+            userActions.map((userAction) => (
+              <UserAction
+                title={userAction.name}
+                onClick={userAction.onClick}
+                key={userAction.name}
+              />
+            ))}
+          {session === null && (
+            <UserAction title={"Sign In"} onClick={() => signIn()} />
+          )}
+        </Menu.Items>
+      </Transition>
+    </Menu>
+  );
+};
 
 const NavBar: React.FC<NavBarProps> = ({ asPath }) => {
   return (
@@ -74,65 +139,7 @@ const NavBar: React.FC<NavBarProps> = ({ asPath }) => {
                 </button>
 
                 {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
-                  <div>
-                    <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="sr-only">Open user menu</span>
-                      <UserIcon className="h-6 w-6" aria-hidden="true" />
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Your Profile
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Settings
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                            onClick={() => signOut()}
-                          >
-                            Sign Out
-                          </a>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
+                <UserMenu />
               </div>
             </div>
           </div>
