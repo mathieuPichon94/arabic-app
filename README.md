@@ -36,12 +36,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 # TODO
-- [ ] video: system design tailwinf
-- [ ] video: SSR pokedex
-- [ ] video: theo -> planet scale in prod
-- [x] clone projects business card
-- [x] deploy vercel
-- [X] navbar
-- [ ] SSR: true -> Check network
-- [ ] tailwind dark them
-- [ ] tailwind provider
+- [ ] story-book
+- [ ] cool new UI
+- [ ] stop moving bottom when opening window
