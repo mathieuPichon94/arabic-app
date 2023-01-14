@@ -1,5 +1,8 @@
 import "@/styles/globals.css";
 
+import { MantineProvider } from "@mantine/core";
+import { NavbarMinimal } from "@/components/NewNavBar";
+
 import { SessionProvider } from "next-auth/react";
 import { type Session } from "next-auth";
 import { type AppType } from "next/app";
@@ -9,6 +12,8 @@ import { store } from "@/store/store";
 import { Provider } from "react-redux";
 import { useRouter } from "next/router";
 
+import { AppShell } from "@mantine/core";
+
 const App: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
@@ -17,9 +22,17 @@ const App: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <Provider store={store}>
-        <Layout asPath={router.asPath}>
-          <Component {...pageProps} />
-        </Layout>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{ colorScheme: "dark" }}
+        >
+          <AppShell navbar={<NavbarMinimal />}>
+            <Layout asPath={router.asPath}>
+              <Component {...pageProps} />
+            </Layout>
+          </AppShell>
+        </MantineProvider>
       </Provider>
     </SessionProvider>
   );

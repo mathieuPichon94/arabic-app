@@ -1,17 +1,31 @@
 import type { GetServerSideProps } from "next";
-import { Card } from "@/components/Card";
+import { Text } from "@mantine/core";
+import { createStyles } from "@mantine/core";
 
 import { openArabicVoc, shuffle } from "@/server/utils";
 import React from "react";
 
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { NewCard } from "@/components/NewCard";
 
 type wordToTest = { arab: string; french: string };
+
+const useStyles = createStyles((theme, _params, getRef) => ({
+  wrapper: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+}));
 
 const Quizz: React.FC<{
   wordsToTest: wordToTest[];
 }> = ({ wordsToTest }) => {
+  const { classes } = useStyles();
   const currentIndexWord = useSelector(
     (state: RootState) => state.currentIndexWord.value
   );
@@ -27,14 +41,12 @@ const Quizz: React.FC<{
   const wordToTest = wordsToTest[currentIndexWord];
 
   return (
-    <div>
-      <div className="h-screen w-screen flex flex-col justify-around items-center relative">
-        <h1 className="text-2xl font-bold">Lets start the quizz</h1>
-        <Card
-          wordToTest={wordToTest}
-          shouldShowTranslation={shouldShowTranslation}
-        />
-      </div>
+    <div className={classes.wrapper}>
+      <Text>Lets start the quizz</Text>
+      <NewCard
+        wordToTest={wordToTest}
+        shouldShowTranslation={shouldShowTranslation}
+      ></NewCard>
     </div>
   );
 };
