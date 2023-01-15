@@ -54,7 +54,7 @@ const Settings: React.FC = () => {
 
   return (
     <Container className={classes.root}>
-      <div className={classes.label}>Settings</div>
+      <div className={classes.label}>Test</div>
       <Title className={classes.title}>To be defined</Title>
       <Text
         color="dimmed"

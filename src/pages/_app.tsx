@@ -1,5 +1,3 @@
-import "@/styles/globals.css";
-
 import { MantineProvider } from "@mantine/core";
 import { NavbarMinimal } from "@/components/NavBar";
 
