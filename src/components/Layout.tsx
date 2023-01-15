@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSession } from "next-auth/react";
-import { SignInPage } from "@/components/SignInPage";
+import SignInPage from "@/pages/SignInPage";
 
 type LayoutProps = {
   children: JSX.Element;

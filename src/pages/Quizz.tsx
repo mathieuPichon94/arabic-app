@@ -7,7 +7,7 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { NewCard } from "@/components/NewCard";
+import { WordCard } from "@/components/WordCard";
 
 type wordToTest = { arab: string; french: string };
 
@@ -43,10 +43,10 @@ const Quizz: React.FC<{
   return (
     <div className={classes.wrapper}>
       <Text>Lets start the quizz</Text>
-      <NewCard
+      <WordCard
         wordToTest={wordToTest}
         shouldShowTranslation={shouldShowTranslation}
-      ></NewCard>
+      ></WordCard>
     </div>
   );
 };

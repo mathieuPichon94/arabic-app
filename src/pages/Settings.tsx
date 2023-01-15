@@ -8,8 +8,6 @@ import {
 } from "@mantine/core";
 import React from "react";
 
-import { signIn } from "next-auth/react";
-
 const useStyles = createStyles((theme) => ({
   root: {
     paddingTop: 80,
@@ -51,27 +49,28 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export const SignInPage: React.FC = () => {
+const Settings: React.FC = () => {
   const { classes } = useStyles();
 
   return (
     <Container className={classes.root}>
-      <div className={classes.label}>Out</div>
-      <Title className={classes.title}>You need to sign in.</Title>
+      <div className={classes.label}>Settings</div>
+      <Title className={classes.title}>To be defined</Title>
       <Text
         color="dimmed"
         size="lg"
         align="center"
         className={classes.description}
       >
-        To play the quizz and to see the word list you need to sign in through
-        goole
+        In this page, we will display some settings
       </Text>
       <Group position="center">
-        <Button variant="subtle" size="md" onClick={() => signIn()}>
-          Sign In
+        <Button variant="subtle" size="md" onClick={() => console.log("hello")}>
+          Click on me !
         </Button>
       </Group>
     </Container>
   );
 };
+
+export default Settings;

@@ -10,11 +10,7 @@ import {
 import {
   TablerIcon,
   IconHome2,
-  IconGauge,
-  IconDeviceDesktopAnalytics,
-  IconFingerprint,
-  IconCalendarStats,
-  IconUser,
+  IconSearch,
   IconSettings,
   IconLogout,
   IconSwitchHorizontal,
@@ -89,12 +85,8 @@ function NavbarLink({
 
 const mockdata = [
   { icon: IconHome2, label: "Home", href: "/Quizz" },
-  { icon: IconGauge, label: "Dashboard", href: "/WordsList" },
-  { icon: IconDeviceDesktopAnalytics, label: "Analytics", href: "/WordsList" },
-  { icon: IconCalendarStats, label: "Releases", href: "/WordsList" },
-  { icon: IconUser, label: "Account", href: "/WordsList" },
-  { icon: IconFingerprint, label: "Security", href: "/WordsList" },
-  { icon: IconSettings, label: "Settings", href: "/Quizz" },
+  { icon: IconSearch, label: "Search", href: "/WordsList" },
+  { icon: IconSettings, label: "Settings", href: "/Settings" },
 ];
 
 export function NavbarMinimal() {

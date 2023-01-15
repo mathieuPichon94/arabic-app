@@ -11,7 +11,7 @@ type CardProps = {
   shouldShowTranslation: boolean;
 };
 
-export const NewCard: React.FC<CardProps> = ({
+export const WordCard: React.FC<CardProps> = ({
   wordToTest,
   shouldShowTranslation,
 }) => {

@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 
 import { MantineProvider } from "@mantine/core";
-import { NavbarMinimal } from "@/components/NewNavBar";
+import { NavbarMinimal } from "@/components/NavBar";
 
 import { SessionProvider } from "next-auth/react";
 import { type Session } from "next-auth";

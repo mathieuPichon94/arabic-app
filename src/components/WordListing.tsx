@@ -1,15 +1,9 @@
-import { Box, Checkbox, Grid, TextInput, createStyles } from "@mantine/core";
+import { Box, Checkbox, Grid, TextInput } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
-import dayjs from "dayjs";
 import { DataTable } from "mantine-datatable";
 import React, { useEffect, useState } from "react";
 import { IconSearch } from "@tabler/icons";
 
-const useStyles = createStyles((theme) => ({
-  root: {
-    height: "100%",
-  },
-}));
 type wordToTest = { arab: string; french: string };
 
 export const SearchingAndFilteringExample: React.FC<{
@@ -31,7 +25,6 @@ export const SearchingAndFilteringExample: React.FC<{
       })
     );
   }, [debouncedQuery, wordsToTest]);
-  const { classes } = useStyles();
   return (
     <>
       <Grid align="center">
