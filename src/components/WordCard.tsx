@@ -31,11 +31,11 @@ export const WordCard: React.FC<CardProps> = ({
       <Text weight={500}>Translate the word</Text>
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500} size={"xl"}>
-          {wordToTest.arab}
+          {wordToTest.french}
         </Text>
         {(shouldShowTranslation || showWord) && (
           <Text weight={500} size={"xl"}>
-            {wordToTest.french}
+            {wordToTest.arab}
           </Text>
         )}
       </Group>
