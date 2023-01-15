@@ -3,7 +3,7 @@ import { Text } from "@mantine/core";
 import { createStyles } from "@mantine/core";
 
 import { openArabicVoc, shuffle } from "@/server/utils";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
@@ -32,11 +32,16 @@ const Quizz: React.FC<{
   const maxIndexWord = useSelector(
     (state: RootState) => state.maxIndexWordReducer.value
   );
+  const [progression, setProgression] = useState(0);
 
   let shouldShowTranslation = false;
   if (currentIndexWord < maxIndexWord) {
     shouldShowTranslation = true;
   }
+
+  useEffect(() => {
+    setProgression(Math.trunc((maxIndexWord / wordsToTest.length) * 100));
+  }, [maxIndexWord, wordsToTest]);
 
   const wordToTest = wordsToTest[currentIndexWord];
 
@@ -46,6 +51,7 @@ const Quizz: React.FC<{
       <WordCard
         wordToTest={wordToTest}
         shouldShowTranslation={shouldShowTranslation}
+        progression={progression}
       ></WordCard>
     </div>
   );
